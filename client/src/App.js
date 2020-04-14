@@ -1,12 +1,13 @@
 import React from "react";
 import ItemForm from "./components/ItemForm";
-import {ItemCard, CardContainer} from "./styles/Global"
-import axios from 'axios'
+import { ItemCard, CardContainer, Button } from "./styles/Global";
+import axios from "axios";
 import "./App.css";
 
 class Items extends React.Component {
   state = {
     items: [],
+    showForm: false,
   };
 
   componentDidMount() {
@@ -15,23 +16,39 @@ class Items extends React.Component {
     });
   }
 
+  addItem = (item) => {
+    axios.post("/api/items", item).then((res) => {
+      this.setState([res.data, ...this.state.items]);
+    });
+  };
+
   renderItems = () => {
     return this.state.items.map((item) => (
       <ItemCard>
         <p>{item.name}</p>
         <p>{item.description}</p>
         <p>{item.likes}</p>
-        <p>{item.image}</p>
+        <img src={item.image} />
       </ItemCard>
     ));
   };
 
+  toggleForm = () => {
+    this.setState({ showForm: !this.state.showForm });
+  };
+
   render() {
     return (
-      <CardContainer>
-        {this.renderItems()}
-        <ItemForm />
-      </CardContainer>
+      <div>
+        <h1>Items</h1>
+        <Button onClick={this.toggleForm}>New Item</Button>
+        {this.state.showForm ? (
+          <ItemForm addItem={this.addItem} toggleForm={this.toggleForm} />
+        ) : (
+          <></>
+        )}
+        <CardContainer>{this.renderItems()}</CardContainer>
+      </div>
     );
   }
 }

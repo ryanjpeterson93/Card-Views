@@ -18,3 +18,16 @@ export const CardContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
 `;
+
+export const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+`;
+
+export const Button = styled.button`
+  font-size: 1em;
+  border: solid 1px darkred;
+  padding: 0em 0.5em;
+  border-radius: 3px;
+`;
