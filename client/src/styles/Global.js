@@ -10,6 +10,7 @@ export const ItemCard = styled.div`
   height: auto;
   margin: 5px;
   overflow-wrap: break-word;
+  box-shadow: 3px 3px 3px #888888;
 `;
 
 export const CardContainer = styled.div`
@@ -23,11 +24,33 @@ export const Form = styled.form`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  box-shadow: 2px 2px #888888;
+  border: solid 1px black;
+  width: 350px;
+  padding: 7px;
+  margin: 5px;
 `;
 
 export const Button = styled.button`
   font-size: 1em;
-  border: solid 1px darkred;
+  border: solid 1px black;
   padding: 0em 0.5em;
   border-radius: 3px;
+  box-shadow: 1px 1px #888888;
+  margin: 5px;
 `;
+
+export const FormButton = styled.button`
+  font-size: 1em;
+  border: solid 1px black;
+  border-radius: 3px;
+  width: 100%;
+`;
+
+export const StyledImg = styled.div`
+
+`
+
+export const StyledContainer = styled.div`
+  margin: 0px 25px;
+`

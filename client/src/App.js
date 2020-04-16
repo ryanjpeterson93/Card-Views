@@ -1,13 +1,13 @@
 import React from "react";
 import ItemForm from "./components/ItemForm";
-import { ItemCard, CardContainer, Button } from "./styles/Global";
+import { ItemCard, CardContainer, Button, StyledImg, StyledContainer } from "./styles/Global";
 import axios from "axios";
 import "./App.css";
 
 class Items extends React.Component {
   state = {
     items: [],
-    showForm: false,
+    showForm: true,
   };
 
   toggleSortAsc = () => {
@@ -42,10 +42,12 @@ class Items extends React.Component {
   renderItems = () => {
     return this.state.items.map((item) => (
       <ItemCard>
-        <p>{item.name}</p>
-        <p>{item.description}</p>
-        <p>{item.likes}</p>
-        <img src={item.image} width='150px' height='150px'/>
+        <p>Name:{item.name}</p>
+        <p>Description: {item.description}</p>
+        <p>Likes: {item.likes}</p>
+        <StyledImg>
+          <img src={item.image} width='150px' height='150px'/>
+        </StyledImg>
       </ItemCard>
     ));
   };
@@ -56,7 +58,7 @@ class Items extends React.Component {
 
   render() {
     return (
-      <div>
+      <StyledContainer>
         <h1>Items</h1>
         <Button onClick={this.toggleSortAsc}>Sort Asc</Button>
         <Button onClick={this.toggleSortDesc}>Sort Desc</Button>
@@ -67,7 +69,7 @@ class Items extends React.Component {
           <></>
         )}
         <CardContainer>{this.renderItems()}</CardContainer>
-      </div>
+      </StyledContainer>
     );
   }
 }
