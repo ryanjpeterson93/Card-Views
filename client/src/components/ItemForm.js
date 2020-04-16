@@ -14,7 +14,6 @@ class ItemForm extends React.Component {
     const item = { ...this.state };
     this.props.addItem(item);
     this.props.toggleForm();
-    // this.props.history.push(/items);
   };
 
   handleChange = (e) => {

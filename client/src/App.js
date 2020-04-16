@@ -10,6 +10,22 @@ class Items extends React.Component {
     showForm: false,
   };
 
+  toggleSortAsc = () => {
+    const {items} = this.state
+    let newItems = items
+    this.setState({
+      items: newItems.sort((a, b) => a.likes - b.likes)
+    })
+  }
+
+  toggleSortDesc = () => {
+    const {items} = this.state
+    let newItems = items
+    this.setState({
+      items: newItems.sort((a, b) => b.likes - a.likes)
+    })
+  }
+
   componentDidMount() {
     axios.get("/api/items").then((res) => {
       this.setState({ items: res.data });
@@ -20,6 +36,7 @@ class Items extends React.Component {
     axios.post("/api/items", item).then((res) => {
       this.setState([res.data, ...this.state.items]);
     });
+
   };
 
   renderItems = () => {
@@ -28,7 +45,7 @@ class Items extends React.Component {
         <p>{item.name}</p>
         <p>{item.description}</p>
         <p>{item.likes}</p>
-        <img src={item.image} />
+        <img src={item.image} width='150px' height='150px'/>
       </ItemCard>
     ));
   };
@@ -41,6 +58,8 @@ class Items extends React.Component {
     return (
       <div>
         <h1>Items</h1>
+        <Button onClick={this.toggleSortAsc}>Sort Asc</Button>
+        <Button onClick={this.toggleSortDesc}>Sort Desc</Button>
         <Button onClick={this.toggleForm}>New Item</Button>
         {this.state.showForm ? (
           <ItemForm addItem={this.addItem} toggleForm={this.toggleForm} />
