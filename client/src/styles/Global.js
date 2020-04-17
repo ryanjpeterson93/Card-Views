@@ -11,6 +11,7 @@ export const ItemCard = styled.div`
   margin: 5px;
   overflow-wrap: break-word;
   box-shadow: 3px 3px 3px #888888;
+  font-size: auto;
 `;
 
 export const CardContainer = styled.div`
@@ -48,9 +49,21 @@ export const FormButton = styled.button`
 `;
 
 export const StyledImg = styled.div`
-
-`
+  margin: 10px;
+  display: flex;
+  border: solid 2px black;
+`;
 
 export const StyledContainer = styled.div`
   margin: 0px 25px;
-`
+`;
+export const StyledHeader = styled.h1`
+  font-size: 3em;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+`;
+
+export const CardText = styled.div`
+  height: 200px;
+`;

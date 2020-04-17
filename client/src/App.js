@@ -1,30 +1,38 @@
 import React from "react";
 import ItemForm from "./components/ItemForm";
-import { ItemCard, CardContainer, Button, StyledImg, StyledContainer } from "./styles/Global";
+import {
+  CardText,
+  ItemCard,
+  CardContainer,
+  Button,
+  StyledImg,
+  StyledContainer,
+  StyledHeader,
+} from "./styles/Global";
 import axios from "axios";
 import "./App.css";
 
 class Items extends React.Component {
   state = {
     items: [],
-    showForm: true,
+    showForm: false,
   };
 
   toggleSortAsc = () => {
-    const {items} = this.state
-    let newItems = items
+    const { items } = this.state;
+    let newItems = items;
     this.setState({
-      items: newItems.sort((a, b) => a.likes - b.likes)
-    })
-  }
+      items: newItems.sort((a, b) => a.likes - b.likes),
+    });
+  };
 
   toggleSortDesc = () => {
-    const {items} = this.state
-    let newItems = items
+    const { items } = this.state;
+    let newItems = items;
     this.setState({
-      items: newItems.sort((a, b) => b.likes - a.likes)
-    })
-  }
+      items: newItems.sort((a, b) => b.likes - a.likes),
+    });
+  };
 
   componentDidMount() {
     axios.get("/api/items").then((res) => {
@@ -36,17 +44,18 @@ class Items extends React.Component {
     axios.post("/api/items", item).then((res) => {
       this.setState([res.data, ...this.state.items]);
     });
-
   };
 
   renderItems = () => {
     return this.state.items.map((item) => (
-      <ItemCard>
-        <p>Name:{item.name}</p>
-        <p>Description: {item.description}</p>
-        <p>Likes: {item.likes}</p>
+      <ItemCard key={item.id}>
+        <CardText>
+          <p>Name:{item.name}</p>
+          <p>Description: {item.description}</p>
+          <p>Likes: {item.likes}</p>
+        </CardText>
         <StyledImg>
-          <img src={item.image} width='150px' height='150px'/>
+          <img src={item.image} width="100%" height="100%" />
         </StyledImg>
       </ItemCard>
     ));
@@ -59,7 +68,7 @@ class Items extends React.Component {
   render() {
     return (
       <StyledContainer>
-        <h1>Items</h1>
+        <StyledHeader>Items</StyledHeader>
         <Button onClick={this.toggleSortAsc}>Sort Asc</Button>
         <Button onClick={this.toggleSortDesc}>Sort Desc</Button>
         <Button onClick={this.toggleForm}>New Item</Button>

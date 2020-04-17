@@ -14,6 +14,7 @@ class ItemForm extends React.Component {
     const item = { ...this.state };
     this.props.addItem(item);
     this.props.toggleForm();
+    // this.props.history.push()
   };
 
   handleChange = (e) => {
@@ -21,7 +22,6 @@ class ItemForm extends React.Component {
       target: { name, value },
     } = e;
     this.setState({ [name]: value });
-    console.log(e);
   };
 
   render() {
@@ -29,7 +29,6 @@ class ItemForm extends React.Component {
     return (
       <Form onSubmit={this.handleSubmit}>
         <input
-
           autoFocus
           required
           placeholder="Name of Item"
@@ -48,7 +47,7 @@ class ItemForm extends React.Component {
         />
         {/* End game is to make this an integer field */}
         <input
-          type = "number"
+          type="number"
           placeholder="Number of Likes"
           style={styles.input}
           onChange={this.handleChange}
@@ -57,7 +56,7 @@ class ItemForm extends React.Component {
         />
         {/* maybe toss a cloudinary photo uploader in this */}
         <input
-          type = "url"
+          type="url"
           required
           placeholder="https://example.com"
           style={styles.input}
@@ -81,6 +80,6 @@ const styles = {
     border: "solid 1px black",
     margin: "2px",
     borderRadius: "3px",
-    fontSize: "12px"
+    fontSize: "12px",
   },
 };
