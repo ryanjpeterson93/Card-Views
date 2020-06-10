@@ -8,7 +8,7 @@ export const ItemCard = styled.div`
   padding: 1em;
   width: 275px;
   height: auto;
-  margin: 5px;
+  margin: 1% auto;
   overflow-wrap: break-word;
   box-shadow: 3px 3px 3px #888888;
   font-size: auto;
@@ -27,9 +27,9 @@ export const Form = styled.form`
   justify-content: space-between;
   box-shadow: 2px 2px #888888;
   border: solid 1px black;
-  width: 350px;
+  width: 275px;
   padding: 7px;
-  margin: 5px;
+  margin: 1% auto;
 `;
 
 export const Button = styled.button`
@@ -38,7 +38,8 @@ export const Button = styled.button`
   padding: 0em 0.5em;
   border-radius: 3px;
   box-shadow: 1px 1px #888888;
-  margin: 5px;
+  margin: 1%;
+  width: fit-content;
 `;
 
 export const FormButton = styled.button`
@@ -65,5 +66,6 @@ export const StyledHeader = styled.h1`
 `;
 
 export const CardText = styled.div`
-  height: 200px;
+  height: 225px;
+  overflow: scroll;
 `;

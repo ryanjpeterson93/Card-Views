@@ -43,19 +43,19 @@ class Items extends React.Component {
   addItem = (item) => {
     axios.post("/api/items", item)
       .then((res) => {
-        const {items} =this.state
-      this.setState({items: [...items, res.data], });
-    });
+        const { items } = this.state
+        this.setState({ items: [...items, res.data], });
+      });
   };
 
   renderItems = () => {
     return this.state.items.map((item) => (
       <ItemCard key={item.id}>
+        <p>Name:{item.name}</p>
         <CardText>
-          <p>Name:{item.name}</p>
           <p>Description: {item.description}</p>
-          <p>Likes: {item.likes}</p>
         </CardText>
+        <p>Likes: {item.likes}</p>
         <StyledImg>
           <img src={item.image} width="100%" height="100%" />
         </StyledImg>
@@ -71,14 +71,14 @@ class Items extends React.Component {
     return (
       <StyledContainer>
         <StyledHeader>Items</StyledHeader>
-        <Button onClick={this.toggleSortAsc}>Sort Asc</Button>
-        <Button onClick={this.toggleSortDesc}>Sort Desc</Button>
-        <Button onClick={this.toggleForm}>New Item</Button>
-        {this.state.showForm ? (
-          <ItemForm addItem={this.addItem} toggleForm={this.toggleForm} />
-        ) : (
-          <></>
-        )}
+        <Button onClick={this.toggleSortAsc}>Likes Asc</Button>
+          <Button onClick={this.toggleSortDesc}>Likes Desc</Button>
+          <Button onClick={this.toggleForm}>New Item</Button>
+          {this.state.showForm ? (
+            <ItemForm addItem={this.addItem} toggleForm={this.toggleForm} />
+          ) : (
+              <></>
+            )}
         <CardContainer>{this.renderItems()}</CardContainer>
       </StyledContainer>
     );
