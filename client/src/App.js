@@ -41,8 +41,10 @@ class Items extends React.Component {
   }
 
   addItem = (item) => {
-    axios.post("/api/items", item).then((res) => {
-      this.setState([res.data, ...this.state.items]);
+    axios.post("/api/items", item)
+      .then((res) => {
+        const {items} =this.state
+      this.setState({items: [...items, res.data], });
     });
   };
 
